@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CV Esteban Calle</title>
+  <meta name="description" content="Hoja de vida interactiva de Juan Esteban Calle Betancur, Desarrollador Frontend Junior e Ingeniero de Multimedia.">
+  <meta name="theme-color" content="#4f000b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f000b'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ff7f51'/%3E%3C/svg%3E">
+
+  <!-- Tipografías (Google Fonts): Bricolage Grotesque (títulos), Inter (texto), JetBrains Mono (detalles técnicos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!--
+    Estructura general:
+    - <canvas id="mesh">: fondo 3D fijo con Suzanne (js/mesh.js y js/suzanne.js)
+    - <header class="nav">: barra de navegación flotante con el selector ES | EN
+    - <main id="loop"> contiene UNA copia del contenido (<div class="copy">); js/main.js la clona dos
+      veces al cargar para lograr el scroll infinito. Edita solo esta copia.
+    - Los textos traducibles llevan data-i="clave"; su versión en inglés está en js/i18n.js
+  -->
+
+  <canvas id="mesh" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <nav class="nav-bar" data-aria-es="Navegación principal" data-aria-en="Main navigation" aria-label="Navegación principal">
+      <a class="nav-name" href="#inicio" data-go="inicio">Esteban Calle</a>
+      <div class="nav-links">
+        <a href="#proyectos" data-go="proyectos" data-i="nav_projects">Proyectos</a>
+        <a href="#experiencia" data-go="experiencia" data-i="nav_exp">Experiencia</a>
+        <a href="#habilidades" data-go="habilidades" data-i="nav_skills">Habilidades</a>
+        <a href="#contacto" data-go="contacto" data-i="nav_contact">Contacto</a>
+      </div>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <main id="loop">
+    <div class="copy">
+
+      <!-- Inicio: nombre, titular, resumen y botones. data-mesh = intensidad del fondo 3D en esta sección (0 a 1) -->
+      <section class="hero" data-sec="inicio" data-mesh="1">
+        <div class="wrap">
+          <p class="loc mono">Medellín, Colombia</p>
+          <h1 class="name" aria-label="Esteban Calle">
+            <span class="line" aria-hidden="true"><span class="ch">E</span><span class="ch">s</span><span class="ch">t</span><span class="ch">e</span><span class="ch">b</span><span class="ch">a</span><span class="ch">n</span></span>
+            <span class="line" aria-hidden="true"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">e</span></span>
+          </h1>
+          <p class="role"><span data-i="role1">Desarrollador Frontend Junior</span><span class="role-sep" aria-hidden="true">|</span><span class="role2" data-i="role2">Ingeniero de Multimedia</span></p>
+          <p class="lede" data-i="lede">Ingeniero de Multimedia con +3 años de experiencia profesional en producción 3D e interactiva, en transición hacia el desarrollo de software con enfoque en Frontend. Bases sólidas en C#, JavaScript y TypeScript; experiencia web con HTML, CSS, Next.js e incursiones en ASP.NET, y desarrollo de aplicaciones interactivas en Unity (AR, VR y videojuegos).</p>
+          <p class="lede2" data-i="lede2">Acostumbrado a trabajar en equipos multidisciplinarios, a entregar a clientes con requisitos cambiantes y a verificar la calidad de entregables y builds. Actualmente profundizo en React, Git/GitHub y consumo de APIs, y estudio orquestación multiagente con IA.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#proyectos" data-go="proyectos" data-i="cta_projects">Ver proyectos</a>
+            <a class="btn btn-ghost" href="assets/cv/CV_Juan_Calle_ES.pdf" download="CV_Juan_Esteban_Calle_ES.pdf" data-dl="auto" data-i="cta_cv">Descargar CV</a>
+          </div>
+          <p class="hint mono" data-i="hint">Mueve el cursor para pasar de malla a sombreado</p>
+        </div>
+      </section>
+
+      <!-- Cinta con tecnologías (decorativa; se mueve con js/main.js) -->
+      <div class="marquee cover" data-sec="marquee" data-mesh="0" aria-hidden="true">
+        <div class="marquee-band">
+          <div class="marquee-track">
+            <span class="seq"><span data-i="mq">3D × Código</span><span class="sl">/</span>C#<span class="sl">/</span>TypeScript<span class="sl">/</span>Next.js<span class="sl">/</span>Unity<span class="sl">/</span>ASP.NET<span class="sl">/</span>JavaScript<span class="sl">/</span>Python<span class="sl">/</span>Git<span class="sl">/</span>Figma<span class="sl">/</span></span>
+            <span class="seq"><span data-i="mq">3D × Código</span><span class="sl">/</span>C#<span class="sl">/</span>TypeScript<span class="sl">/</span>Next.js<span class="sl">/</span>Unity<span class="sl">/</span>ASP.NET<span class="sl">/</span>JavaScript<span class="sl">/</span>Python<span class="sl">/</span>Git<span class="sl">/</span>Figma<span class="sl">/</span></span>
+            <span class="seq"><span data-i="mq">3D × Código</span><span class="sl">/</span>C#<span class="sl">/</span>TypeScript<span class="sl">/</span>Next.js<span class="sl">/</span>Unity<span class="sl">/</span>ASP.NET<span class="sl">/</span>JavaScript<span class="sl">/</span>Python<span class="sl">/</span>Git<span class="sl">/</span>Figma<span class="sl">/</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyectos: dos grupos de tarjetas (Web y 3D × Código) -->
+      <section class="projects" data-sec="proyectos" data-mesh="0.1">
+        <div class="wrap">
+          <h2 class="h2" data-i="h_projects">Proyectos</h2>
+          <p class="sub" data-i="sub_projects">Aplicaciones web, videojuegos y dispositivos físicos conectados a Unity.</p>
+
+          <h3 class="group mono" data-i="g_web">Web</h3>
+          <div class="grid">
+            <article class="card">
+              <p class="tag mono" data-i="p1_tag">Proyecto personal · en desarrollo</p>
+              <h4 class="card-title" data-i="p1_t">Plataforma de reservas para agencia de autos</h4>
+              <p class="stack mono">Next.js · JavaScript · TypeScript</p>
+              <ul>
+                <li data-i="p1_b1">Aplicación web para consultar información de reservas, con consumo de datos desde una API mediante fetch.</li>
+                <li data-i="p1_b2">Siguiente fase: integrar una API que muestre el vehículo reservado y los datos completos de la renta.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <p class="tag mono" data-i="p2_tag">Proyecto académico</p>
+              <h4 class="card-title" data-i="p2_t">Sitio web con ASP.NET</h4>
+              <p class="stack mono">C# · HTML · CSS · Bootstrap</p>
+              <ul>
+                <li data-i="p2_b1">Aplicación web con formularios, lógica en C# y estilos con Bootstrap.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="group-row"><h3 class="group group-hi mono" data-i="g_3d">3D × Código</h3></div>
+          <div class="grid">
+            <article class="card card-hi">
+              <p class="tag mono" data-i="p3_tag">Proyectos académicos y personales</p>
+              <h4 class="card-title" data-i="p3_t">Aplicaciones interactivas y videojuegos</h4>
+              <p class="stack mono">Unity · C#</p>
+              <ul>
+                <li data-i="p3_b1">Programación de aplicaciones de realidad aumentada y virtual (Meta Quest) y de un videojuego de acción con mecánica FPS.</li>
+                <li data-i="p3_b2">Integración de dispositivos externos: Kinect con Unity y una mini-consola con Arduino conectada por puerto serial a un clon de Asteroids.</li>
+              </ul>
+            </article>
+            <article class="card card-hi">
+              <p class="tag mono" data-i="p4_tag">Equipo de 6 personas</p>
+              <h4 class="card-title" data-i="p4_t">Videojuego Olimpiadas Tech</h4>
+              <p class="stack mono" data-i="p4_stack">Unity · C# · Modelado 3D · Rigging · Animación</p>
+              <ul>
+                <li data-i="p4_b1">Diseño del entorno basado en una ciudad real y distribución de los espacios para la jugabilidad y la historia.</li>
+                <li data-i="p4_b2">Producción de los modelos 3D, rigs y animaciones de los personajes y enemigos.</li>
+                <li data-i="p4_b3">Apoyo en la dirección de arte del juego.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiencia y educación (sección clara) -->
+      <section class="paper cover" data-sec="experiencia" data-mesh="0">
+        <div class="wrap">
+          <h2 class="h2" data-i="h_exp">Experiencia</h2>
+          <div class="entries">
+            <article class="entry">
+              <div class="entry-meta mono" data-i="e1_date">ene 2023 – jul 2026</div>
+              <div>
+                <h3 class="entry-title"><span data-i="e1_role">Generalista 3D</span><span class="at">Makata Studio</span></h3>
+                <ul>
+                  <li data-i="e1_b1">Producción de assets 3D para animación y motores en tiempo real (Unity y web), cumpliendo especificaciones de rendimiento: LODs, densidad de texturas y materiales reutilizables.</li>
+                  <li data-i="e1_b2">Control de calidad de entregables: verificación de modelos frente a requerimientos, materiales empaquetados, despliegue correcto en el motor y revisión de builds.</li>
+                  <li data-i="e1_b3">Colaboración diaria con equipos de arte, animación y desarrollo mediante Slack, Notion y Figma, con flujos estandarizados y componentes reutilizables.</li>
+                  <li data-i="e1_b4">Entrega a clientes de distintos sectores (startup fintech de dinero digital, app de fitness y running, entre otros), adaptando el trabajo a cambios de dirección y requisitos modificados durante el proyecto.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="entry">
+              <div class="entry-meta mono" data-i="e2_date">2019 – presente (intermitente)</div>
+              <div>
+                <h3 class="entry-title"><span data-i="e2_role">Editor y animador de video</span><span class="at">Freelance</span></h3>
+                <ul>
+                  <li data-i="e2_b1">Edición, etalonaje y animación de videos musicales, explicando a clientes y equipos el porqué de cada decisión creativa.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <h2 class="h3" data-i="h_edu">Educación</h2>
+          <div class="entries">
+            <article class="entry">
+              <div class="entry-meta mono">2023</div>
+              <div>
+                <h3 class="entry-title"><span data-i="ed_t">Ingeniería Multimedia</span><span class="at">Universidad de San Buenaventura</span></h3>
+                <ul>
+                  <li data-i="ed_honor">Grado de Honor</li>
+                </ul>
+                <p data-i="ed_course">Formación relevante: programación en todos los semestres, análisis y desarrollo de software, bases de datos, redes de datos, redes de datos multimedia y procesamiento de señales.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Habilidades e idiomas -->
+      <section class="skills cover" data-sec="habilidades" data-mesh="0">
+        <div class="wrap">
+          <h2 class="h2" data-i="h_skills">Habilidades</h2>
+          <div class="skill-grid">
+            <div>
+              <p class="skill-label mono" data-i="s_lang">Lenguajes</p>
+              <div class="chips"><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">C#</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Python</span></div>
+            </div>
+            <div>
+              <p class="skill-label mono">Frontend</p>
+              <div class="chips"><span class="chip">Next.js</span><span class="chip" data-i="k_react">React (en formación)</span><span class="chip">Bootstrap</span><span class="chip" data-i="k_api">Consumo de APIs con fetch</span></div>
+            </div>
+            <div>
+              <p class="skill-label mono" data-i="s_back">Backend y datos</p>
+              <div class="chips"><span class="chip">ASP.NET</span><span class="chip">C#</span><span class="chip" data-i="k_db">Diseño y creación de bases de datos</span><span class="chip" data-i="k_net">Redes de datos</span></div>
+            </div>
+            <div>
+              <p class="skill-label mono" data-i="s_tools">Herramientas</p>
+              <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip" data-i="k_term">Terminal</span><span class="chip">Figma</span><span class="chip">Notion</span><span class="chip">Slack</span><span class="chip">Unity</span></div>
+            </div>
+            <div>
+              <p class="skill-label mono" data-i="s_qa">Calidad (QA)</p>
+              <div class="chips"><span class="chip" data-i="k_qa1">Verificación de builds</span><span class="chip" data-i="k_qa2">Validación de requisitos</span><span class="chip" data-i="k_qa3">Pruebas manuales de despliegue</span></div>
+            </div>
+            <div>
+              <p class="skill-label mono" data-i="s_ai">IA</p>
+              <div class="chips"><span class="chip" data-i="k_ai1">Orquestación multiagente (en estudio)</span><span class="chip" data-i="k_ai2">Asistentes de IA para depuración de código</span></div>
+            </div>
+          </div>
+          <div class="langs">
+            <p class="skill-label mono" data-i="s_langs">Idiomas</p>
+            <p data-i="l_es"><strong>Español:</strong> nativo</p>
+            <p data-i="l_en"><strong>Inglés:</strong> profesional (conversación fluida en entornos técnicos)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contacto y descarga de los PDF. Esta sección enlaza visualmente con el inicio para que el bucle no se note -->
+      <section class="contact" data-sec="contacto" data-mesh="0.25">
+        <div class="wrap">
+          <h2 class="h2" data-i="h_contact">Contacto</h2>
+          <p class="sub" data-i="sub_contact">Escríbeme o descarga mi hoja de vida.</p>
+          <div class="contact-grid">
+            <div class="contact-row">
+              <p class="contact-label mono" data-i="c_name">Nombre</p>
+              <p class="contact-person">Juan Esteban Calle Betancur</p>
+            </div>
+            <div class="contact-row">
+              <p class="contact-label mono" data-i="c_mail">Correo</p>
+              <div class="email-line">
+                <span class="email-text">estebancalle.ing@gmail.com</span>
+                <button type="button" class="small-btn" data-copy-email data-i="btn_copy">Copiar</button>
+                <a class="small-btn" href="mailto:estebancalle.ing@gmail.com" data-i="btn_write">Escribir</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <p class="contact-label mono">LinkedIn</p>
+              <a class="in-link" href="https://linkedin.com/in/juanesteban-calle-betancur-a07055178" target="_blank" rel="noopener">linkedin.com/in/juanesteban-calle-betancur-a07055178</a>
+            </div>
+            <div class="contact-row">
+              <p class="contact-label mono" data-i="c_cv">Hoja de vida</p>
+              <div class="dl-row">
+                <a class="btn btn-solid" href="assets/cv/CV_Juan_Calle_ES.pdf" download="CV_Juan_Esteban_Calle_ES.pdf" data-i="dl_es">CV en español (PDF)</a>
+                <a class="btn btn-ghost" href="assets/cv/CV_Juan_Calle_EN.pdf" download="CV_Juan_Esteban_Calle_EN.pdf" data-i="dl_en">CV en inglés (PDF)</a>
+              </div>
+            </div>
+          </div>
+          <p class="loop-note mono" data-i="loop">Sigue bajando: la página vuelve al inicio.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Three.js (fondo 3D con Suzanne). Si no carga, la página funciona igual, solo sin el fondo 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- El orden importa: textos -> modelo de Suzanne -> escena 3D -> lógica principal -->
+  <script src="js/i18n.js"></script>
+  <script src="js/suzanne.js"></script>
+  <script src="js/mesh.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

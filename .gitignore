@@ -1,0 +1,8 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores y herramientas
+*.log
+node_modules/
+__pycache__/
